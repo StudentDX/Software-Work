@@ -7,7 +7,7 @@ app = Flask(__name__)
 @app.route("/")
 def test1():
     print(__name__)
-    return "test 1"
+    return "<head></head><body><div>testing</div><div>1</div></body>"
 
 @app.route("/test2") #naming scheme is done with /<funct name>
 def test2():
