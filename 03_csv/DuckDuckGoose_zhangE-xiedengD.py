@@ -1,3 +1,8 @@
+#David Xiedeng
+#SoftDev1 pd 1
+#K 06 -- StI/O: Divine your Destiny!
+#2019-09-17 
+
 import random
 
 ## Goal: Write a Python script to read in the file and build an appropriate dictionary from it.
@@ -19,7 +24,7 @@ out = dict()
 
 for line in lines:
         out.update({line[0]: float(line[1].strip())})
-#print (out)
+print (out)
 #print()
 
 ## Goal: Create a function that randomly returns an occupations
@@ -64,4 +69,4 @@ def check_percentage(keys):
     for j in keys:
         print(j + ':', d.get(j) / total * 100, '%')
 
-#check_percentage(list(out)[:-1])
+check_percentage(list(out)[:-1])
