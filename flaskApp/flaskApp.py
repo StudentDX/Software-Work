@@ -3,7 +3,7 @@
 #demo -- My First Flask App
 #2019-09-17t
 
-from flask import Flask
+from flask import Flask, render_template
 app = Flask(__name__) #create instance of class Flask
 
 @app.route("/")
@@ -13,6 +13,14 @@ def hello_world():
     return "No hablo queso!"
 
 coll = {0,1,2,3}
+
+@app.route("/my_foist_template")
+def test_tmplt():
+    return render_template(
+       'model_tmplt.html',
+       foo="foooo",
+       collection=coll
+    )
 
 if __name__ == "__main__":
     app.debug = True
