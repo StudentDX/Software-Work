@@ -1,7 +1,11 @@
 <!DOCTYPE HTML>
   <title>
-    {{"ree"}}
+    {{Title}}
   </title>
   <body>
-    
+    <ul>
+    {% for key, value in occupations %}
+      <li><span>{{key}}</span><span>{{value}}</span></li>
+    {% endfor %}
+    </ul>
   </body>
