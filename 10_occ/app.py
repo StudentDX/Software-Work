@@ -43,3 +43,11 @@ def random_occupation(d):
       return "" + key
     low = low + d[key]
 
+###page routes
+@app.route("/")
+def helloWorld():
+  return "main page"
+  
+if __name__ == "__main__":
+  app.debug == True
+  app.run()
