@@ -24,7 +24,7 @@ out = dict()
 
 for line in lines:
         out.update({line[0]: float(line[1].strip())})
-print (out)
+#print (out)
 #print()
 
 ## Goal: Create a function that randomly returns an occupations
@@ -53,7 +53,22 @@ def random_occupation(d):
             return keys[values.index(val)]
         prev = val
 
-print(random_occupation(out))
+#print(random_occupation(out))
+
+## input: dictionary d {string, float}
+## output: random occupation (string)
+def random_occupation_2(d):
+  rNum = random.uniform(0, d["Total"])
+  low = 0
+  #loop through dict, d
+  for key in out:
+    #skip ["Total"]
+    #range [lower_range, upper _range]
+      if rNum >= low and rNum <= d[key] + low:
+        return "" + key
+      low = low + d[key]
+
+print(random_occupation_2(out))
 
 ## checks percentages of getting an occupation over many tries
 def check_percentage(keys):
@@ -63,7 +78,7 @@ def check_percentage(keys):
     for i in range(1, 2 ** 15):
         total += 1
         for key in keys:
-            if (random_occupation(out) == key):
+            if (random_occupation_2(out) == key):
                 d.update({key : d.get(key) + 1})
     ## format and print "occupation: percent %"
     for j in keys:
