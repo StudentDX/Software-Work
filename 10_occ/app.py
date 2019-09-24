@@ -36,18 +36,31 @@ def random_occupation(d):
   rNum = random.uniform(0, d["Total"])
   low = 0
   #loop through dict, d
-  for key in out:
+  for key in occupations:
     #skip ["Total"]
     #range [lower_range, upper _range]
     if rNum >= low and rNum <= d[key] + low:
       return "" + key
     low = low + d[key]
+  
 
 ###page routes
 @app.route("/")
 def helloWorld():
   return "main page"
   
+@app.route("/occupyflaskst")
+def occupationPage():
+  readOccupations()
+  #print(occupations)
+  return render_template(
+    "occupationspage.html",
+    Title="Occupations, man.",
+    occupations = occupations,
+    job = random_occupation(occupations)
+  )
+  
 if __name__ == "__main__":
   app.debug == True
   app.run()
+  
