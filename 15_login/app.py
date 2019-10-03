@@ -18,9 +18,14 @@ def loginAccepted():
   print("request.method:", request.method)
   print("request.headers:", request.headers)
   """
-  if request.args["username"] == "cleancoal" and request.args["password"] == "co2":
-    return "test"
-  
+  username = request.args["username"]
+  print ("User:", username)
+  if username == "cleancoal" and request.args["password"] == "co2":
+    return render_template("profile.html", 
+      User = username)
+  else:
+    return redirect("/static/error.html")
+    
 if __name__ == "__main__":
   app.debug = True
   app.run() 
