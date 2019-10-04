@@ -10,6 +10,10 @@ app = Flask(__name__)
 username = "cleancoal"
 password = "co2"
 
+#session setup
+file = open("sessionKey.txt", "r")
+app.secret_key = file.readline()
+
 @app.route("/")
 def login(): 
   return render_template("login.html")
@@ -27,7 +31,7 @@ def loginAccepted():
   session["password"] = request.args["password"]
   if username == session["username"] and password == session["password"]:
     return render_template("profile.html", 
-      User = session[username])
+      User = session["username"])
   else:
     return redirect("/error")
 
@@ -35,14 +39,13 @@ def loginAccepted():
 def badLogin():
   error = ""
   # checks for mistake in the entered information
-  #print(username)
-  #print(request.args)
   if username != session["username"] and password != session["password"]:
     error = "username and password"
   elif username != session["username"]:
     error = "username"
   else:
     error = "password"
+  
   return render_template("error.html", mistake = error)
     
 if __name__ == "__main__":
