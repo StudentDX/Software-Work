@@ -27,11 +27,15 @@ def loginAccepted():
   print("request.headers:", request.headers)
   print ("User:", username)
   """
-  session["username"] = request.args["username"]
-  session["password"] = request.args["password"]
-  if username == session["username"] and password == session["password"]:
+  #check username and password to hardcoded; either cached or entered
+  if username == session.get("username") and password == session.get("password"):
     return render_template("profile.html", 
-      User = session["username"])
+      User = session.get("username"))
+  #if does not match hardcode, change session to request and recurse
+  elif session.get("username") != request.args["username"] or session.get("password") != request.args["password"]:
+    session["username"] = request.args["username"]
+    session["password"] = request.args["password"]
+    return loginAccepted()
   else:
     return redirect("/error")
 
@@ -39,14 +43,19 @@ def loginAccepted():
 def badLogin():
   error = ""
   # checks for mistake in the entered information
-  if username != session["username"] and password != session["password"]:
+  if username != session.get("username") and password != session.get("password"):
     error = "username and password"
-  elif username != session["username"]:
+  elif username != session.get("username"):
     error = "username"
   else:
     error = "password"
-  
   return render_template("error.html", mistake = error)
+    
+@app.route("/logout")
+def logout():
+  session.pop("username")
+  session.pop("password")
+  return redirect("/")
     
 if __name__ == "__main__":
   app.debug = True
