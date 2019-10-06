@@ -1,4 +1,10 @@
-{% extends "login.html" %} 
+{% extends "login.html" %}   
   {% block Message %}
+    {% block Flash %}  
+      {% for message in get_flashed_messages() %}
+        {{message}}
+        <br>
+      {% endfor %}
+    {% endblock %}
     You have entered in the wrong {{mistake}}.
   {% endblock %}

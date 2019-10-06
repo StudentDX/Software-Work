@@ -3,7 +3,7 @@
 #K15 -- Do I Know You?
 #2019-10-02
 
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, flash
 app = Flask(__name__)
 
 #hardcoded username and password
@@ -37,6 +37,7 @@ def loginAccepted():
     session["password"] = request.args["password"]
     return loginAccepted()
   else:
+    flash("error")  
     return redirect("/error")
 
 @app.route("/error")
