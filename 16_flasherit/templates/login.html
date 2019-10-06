@@ -1,24 +1,22 @@
-<!DOCTYPE html>
-<html>
+{% block Title %}
   <title>
     Login Page
   </title>
-  <body>
-    <form action = "/auth">
-      <div>Username:</div>
-      <input type = "text" name = "username"><br>
-      <div>Password:</div>
-      <input type = "text" name = "password"><br>
-      <input type = "submit" value = "Submit">
-      <!-- 
-      Inheritance for error
-      -->
-      <div>
-        <br>
-        {% block Message %}
-          Testing
-        {% endblock %}
-      </div>
-    </form>
-  </body>
-</html>
+  <h1>Login Page</h1>
+{% endblock %}
+{% block Body %}
+  <form action = "/auth">
+    <div>Username:</div>
+    <input type = "text" name = "username"><br>
+    <div>Password:</div>
+    <input type = "text" name = "password"><br>
+    <input type = "submit" value = "Log In">
+  </form>
+{% endblock %}    
+    
+    <!-- 
+    Inheritance for error
+    -->
+{% block Message %}
+    Please log in.
+{% endblock %}
