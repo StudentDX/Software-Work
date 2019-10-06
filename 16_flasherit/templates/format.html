@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html>
-  <title>
-    {% block Title %}
-    {% endblock %}
-  </title>
+  {% block Title %}
+  {% endblock %}
   <body>
     {% block Body %}
     {% endblock %}
     {% block Message %}
+    {% endblock %}
+    {% block Footnote %}
+      <div>
+        <br>
+        This site was brought to you by cleancoal. <br>
+        With your support, we'll scrub out all the co2.
+      </div>
     {% endblock %}
   </body>
 </html>
