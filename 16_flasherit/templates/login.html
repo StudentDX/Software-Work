@@ -10,6 +10,15 @@
       <div>Password:</div>
       <input type = "text" name = "password"><br>
       <input type = "submit" value = "Submit">
+      <!-- 
+      Inheritance for error
+      -->
+      <div>
+        <br>
+        {% block Message %}
+          Testing
+        {% endblock %}
+      </div>
     </form>
   </body>
 </html>

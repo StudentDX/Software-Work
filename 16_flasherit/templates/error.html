@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <title>
-    Oops, something went wrong!
-  </title>
-  <body>
+{% extends "login.html" %} 
+  {% block Message %}
     You have entered in the wrong {{mistake}}.
-    <div>
-      <form action="/">
-        <button type ="submit">Return to login page</button>
-      </form>
-    </div>
-  </body>
-</html>
+  {% endblock %}
