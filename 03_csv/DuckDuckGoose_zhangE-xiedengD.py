@@ -68,20 +68,20 @@ def random_occupation_2(d):
         return "" + key
       low = low + d[key]
 
-print(random_occupation_2(out))
+##print(random_occupation_2(out))
 
 ## checks percentages of getting an occupation over many tries
 def check_percentage(keys):
     total = 0
     ## dictionary of occupation(string) : hits by randomizer(int)
     d = {i : 0 for i in keys}
-    for i in range(1, 2 ** 15):
+    for i in range(1, 2 ** 19):
         total += 1
         for key in keys:
             if (random_occupation_2(out) == key):
                 d.update({key : d.get(key) + 1})
     ## format and print "occupation: percent %"
     for j in keys:
-        print(j + ':', d.get(j) / total * 100, '%')
+        print(j + ':', int(d.get(j) / total * 1000) / 10, '%')
 
 check_percentage(list(out)[:-1])
