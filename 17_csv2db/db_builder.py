@@ -21,8 +21,9 @@ c = db.cursor()               #facilitate db ops
 def readToDatabase(filename):
   #c create table based off file name"
   #x print (filename[5:-3])
-  name = (filename[5:-3])
+  name = (filename[5:-4])
   command = "CREATE TABLE {}(Test int)".format(name)
+  print (command)
   c.execute(command)
   #c put info into table
   with open(filename) as file:
