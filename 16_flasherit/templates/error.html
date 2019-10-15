@@ -1,5 +1,6 @@
 {% extends "login.html" %}   
   {% block Message %}
+    <!-- flash message from redirect from login.html -->
     {% block Flash %}  
       {% for message in get_flashed_messages() %}
         {{message}}

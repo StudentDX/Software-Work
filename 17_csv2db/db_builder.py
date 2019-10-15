@@ -14,31 +14,46 @@ c = db.cursor()               #facilitate db ops
 #==========================================================
 
 # < < < INSERT YOUR POPULATE-THE-DB CODE HERE > > >
-#x command = "CREATE TABLE data(Test int)"
-#x ^^ how to create the table
+#x# command = "CREATE TABLE data(Test int)"
+#x# ^^ how to create the table
 
-#c Reading CSV
+#c# Reading CSV
 def readToDatabase(filename):
-  #c create table based off file name"
-  #x print (filename[5:-3])
-  name = (filename[5:-4])
-  command = "CREATE TABLE {}(Test int)".format(name)
-  print (command)
-  c.execute(command)
-  #c put info into table
   with open(filename) as file:
     reader = csv.DictReader(file)
-    #x print (returnKeys(reader))
+    keychain = returnKeys(reader);
+    #c# create table based off file name"
+    #x# print (returnKeys(reader))
+    #c# put info into table
+    for row in reader:
+      addTo(keychain[0], row[keychain[0]])
 
-#returns the dict of keys    
+#c# calls c.execute(command)
+def comm(command):
+  c.execute(command)
+
+#c# create table and remove table if exists
+#c# takes in a filename and the keys
+def buildTable(filename, kc):
+  #x# print (filename[5:-3])
+  name = (filename[5:-4])
+  comm("DROP TABLE if exists {}".format(name))
+  comm("CREATE TABLE {}({} {}, {} {}, {} {})".format(name, ))
+
+#c# returns the dict of keys    
 def returnKeys(reader):
   for row in reader:
-    return (row.keys())
+    return list((row.keys()))
+    
+#c# adds value to key
+def addTo(tag, data):
+  comm("INSERT INTO {} VALUES {}".format(tag, data))
     
 readToDatabase('data/courses.csv')
+
 command = ""          # test SQL stmt in sqlite3 shell, save as string
 
-command = "INSERT INTO data VALUES (10)"
+#x# command = "INSERT INTO data VALUES (10)"
 
 c.execute(command)    # run SQL statement
 
