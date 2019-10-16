@@ -16,6 +16,21 @@ c = db.cursor()
 def comm(command):
   c.execute(command)  
 
+#d# create table and remove table if exists
+#d# takes in a filename and the keys
+def buildTable(name, kc):
+  #x# print (filename[5:-3])
+  #x# print(kc[0], kc[1], kc[2]) 
+  comm("CREATE TABLE if not exists {}({} TEXT, {} INTEGER, {} INTEGER)".format(name, ''+kc[0],kc[1], kc[2]))
+  comm("DELETE FROM {}".format(name))
+
+#d# adds data to table
+#d# whole row insertion
+def addTo(table, c1, c2, c3):
+  comm("INSERT INTO {} VALUES ({},{},{})".format(table,c1,c2,c3))
+
+#==========================================================
+
 q = 'SELECT name, students.id, mark FROM students, courses WHERE students.id = courses.id;'
   
 comm(q)
@@ -58,11 +73,28 @@ def findStudentInfo(name):
   info = [name]
   info.append(findStudentID(name))
   info.append(findStudentAverage(name))
-  return info    
+  return info
 
+#d# creates table with columns (name, id, grade) and adds
+#d# student info to it
+def createStudentInfoTable():
+  #c# building table
+  col = ["name", "id", "grade"]
+  buildTable("stu_avg", col)
+  #c# find list of Students
+  names = []
+  for row in data:
+    if (row[0] not in names):
+      names.append(row[0])
+  #c# adding to table
+  for name in names:
+    SInfo = findStudentInfo(name)
+    addTo("stu_avg", "\"{}\"".format(SInfo[0]), SInfo[1], SInfo[2])
+  
 #x# print (findStudentGrades("alison"))
 #x# print (findStudentAverage("alison"))
 #x# print (findStudentInfo("alison"))
+createStudentInfoTable()
 
 #==========================================================
 
