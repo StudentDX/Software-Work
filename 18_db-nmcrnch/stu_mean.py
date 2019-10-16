@@ -34,6 +34,8 @@ def findStudentGrades(name):
       storage.append(row)
   return storage    
 
+#d# input of string name
+#d# returns average of student over classes
 def findStudentAverage(name):
   grades = findStudentGrades(name)
   gradeSum = 0
@@ -43,8 +45,24 @@ def findStudentAverage(name):
     numberOfClasses += 1
   return (gradeSum/numberOfClasses)
 
+#d# input string name
+#d# returns int, id
+def findStudentID(name):
+  for row in data:
+    if (row[0] == name):
+      return row[1]
+  
+#d# input string name
+#d# returns list of student name, id, and average
+def findStudentInfo(name):
+  info = [name]
+  info.append(findStudentID(name))
+  info.append(findStudentAverage(name))
+  return info    
+
 #x# print (findStudentGrades("alison"))
-print (findStudentAverage("alison"))
+#x# print (findStudentAverage("alison"))
+#x# print (findStudentInfo("alison"))
 
 #==========================================================
 
