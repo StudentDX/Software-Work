@@ -25,11 +25,11 @@ def readToDatabase(filename):
     name = (filename[5:-4])
     #c# create table based off file name"
     buildTable(name, keychain)
-    #x# print (returnKeys(reader))
     #c# put info into table
     for row in reader:
-      #x# print(keychain[0], row[keychain[0]], keychain[1], row[keychain[1]], keychain[2], row[keychain[2]])
-      addTo(name, keychain[1], row[keychain[0]])
+      #x# print (name, keychain[0], row[keychain[0]])
+      #x# print (type(row[keychain[0]]), row[keychain[0]])
+      addTo(name, keychain[0], row[keychain[0]])
       
 #c# calls c.execute(command)
 def comm(command):
@@ -40,16 +40,18 @@ def comm(command):
 def buildTable(name, kc):
   #x# print (filename[5:-3])
   comm("DROP TABLE if exists {}".format(name))
-  comm("CREATE TABLE {}({} TEXT, {} INTEGER, {} INTEGER)".format(name, kc[0],kc[1], kc[2]))
+  #x# print(kc[0], kc[1], kc[2]) 
+  comm("CREATE TABLE {}({} TEXT, {} INTEGER, {} INTEGER)".format(name, ''+kc[0],kc[1], kc[2]))
 
 #c# returns the dict of keys    
 def returnKeys(reader):
   for row in reader:
     return list((row.keys()))
     
-#c# adds value to key
+#c# adds data to table at col, tag
+#c# one col addition
 def addTo(table, tag ,data):
-  comm("INSERT INTO {}({}) VALUES {}".format(table, tag ,data))
+  comm("INSERT INTO {}({}) VALUES ({})".format(table,tag,"\'" + data + "\'"))
     
 readToDatabase('data/courses.csv')
 
