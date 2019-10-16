@@ -64,6 +64,7 @@ def addTo(table, c1, c2, c3):
   comm("INSERT INTO {} VALUES ({},{},{})".format(table,c1,c2,c3))
    
 readToDatabase('data/courses.csv')
+readToDatabase('data/students.csv')
 
 command = ""          # test SQL stmt in sqlite3 shell, save as string
 
