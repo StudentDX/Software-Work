@@ -40,9 +40,9 @@ def comm(command):
 #c# takes in a filename and the keys
 def buildTable(name, kc):
   #x# print (filename[5:-3])
-  comm("DROP TABLE if exists {}".format(name))
   #x# print(kc[0], kc[1], kc[2]) 
-  comm("CREATE TABLE {}({} TEXT, {} INTEGER, {} INTEGER)".format(name, ''+kc[0],kc[1], kc[2]))
+  comm("CREATE TABLE if not exists {}({} TEXT, {} INTEGER, {} INTEGER)".format(name, ''+kc[0],kc[1], kc[2]))
+  comm("DELETE FROM {}".format(name))
 
 #c# returns the dict of keys    
 def returnKeys(filename):
