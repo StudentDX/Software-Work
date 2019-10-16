@@ -19,17 +19,18 @@ c = db.cursor()               #facilitate db ops
 
 #c# Reading CSV
 def readToDatabase(filename):
+  keychain = returnKeys(filename);
   with open(filename) as file:
     reader = csv.DictReader(file)
-    keychain = returnKeys(reader);
     name = (filename[5:-4])
     #c# create table based off file name"
     buildTable(name, keychain)
     #c# put info into table
     for row in reader:
-      #x# print (name, keychain[0], row[keychain[0]])
-      #x# print (type(row[keychain[0]]), row[keychain[0]])
-      addTo(name, keychain[0], row[keychain[0]])
+      #x# 
+      print (row[keychain[0]], row[keychain[1]], row[keychain[2]])
+      #x# addTo(name, keychain[0], row[keychain[0]])
+      addTo(name, "\'{}\'".format(row[keychain[0]]), row[keychain[1]], row[keychain[2]])
       
 #c# calls c.execute(command)
 def comm(command):
@@ -44,15 +45,24 @@ def buildTable(name, kc):
   comm("CREATE TABLE {}({} TEXT, {} INTEGER, {} INTEGER)".format(name, ''+kc[0],kc[1], kc[2]))
 
 #c# returns the dict of keys    
-def returnKeys(reader):
-  for row in reader:
-    return list((row.keys()))
+def returnKeys(filename):
+  with open(filename) as file:
+    reader = csv.DictReader(file)
+    for row in reader:
+      #x# print(row)
+      #x# print(list((row.keys())))
+      return list((row.keys()))
     
 #c# adds data to table at col, tag
 #c# one col addition
 def addTo(table, tag ,data):
   comm("INSERT INTO {}({}) VALUES ({})".format(table,tag,"\'" + data + "\'"))
-    
+
+#c# adds data to table
+#c# whole row insertion
+def addTo(table, c1, c2, c3):
+  comm("INSERT INTO {} VALUES ({},{},{})".format(table,c1,c2,c3))
+   
 readToDatabase('data/courses.csv')
 
 command = ""          # test SQL stmt in sqlite3 shell, save as string
