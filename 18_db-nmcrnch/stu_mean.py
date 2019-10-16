@@ -34,7 +34,18 @@ def findStudentGrades(name):
       storage.append(row)
   return storage    
 
+def findStudentAverage(name):
+  grades = findStudentGrades(name)
+  gradeSum = 0
+  numberOfClasses = 0
+  for el in grades:
+    gradeSum = gradeSum + el[2]
+    numberOfClasses += 1
+  return (gradeSum/numberOfClasses)
+
 #x# print (findStudentGrades("alison"))
+print (findStudentAverage("alison"))
+
 #==========================================================
 
 db.commit() #save changes
