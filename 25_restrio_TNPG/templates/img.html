@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %} 
+    Wolfram Alpha 
+{% endblock title %}
+{% block body %}
+    <h1>JSON returned from request:</h1> 
+    {{img_title}}
+    <img src={{img_link}}>
+    <p>{{api_data}}</p> 
+{% endblock body %}
