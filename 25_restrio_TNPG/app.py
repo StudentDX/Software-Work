@@ -7,6 +7,7 @@ from flask import Flask, render_template
 import urllib.request
 from urllib.parse import quote
 import json
+import random
 
 app = Flask(__name__)
 
@@ -26,7 +27,8 @@ WOLFRAM = API('P4747E-2545R4KKGK', 'http://api.wolframalpha.com/v2/query?appid={
 
 
 APIs = {
-    "Wolfram Alpha API":"/wolframAlpha"
+    "Wolfram Alpha API":"/wolframAlpha",
+    "Metropolitan Museum of Art Collection API":"/met"
     }
 
 @app.route("/")
@@ -45,6 +47,29 @@ def wolframAlpha():
     img = data['pods'][0]['subpods'][0]['img']
     print(img)
     return render_template('img.html',img_title = img['title'], img_link = img['src'])
+    
+@app.route("/met")
+def metropolitan():
+    #find list of all objects
+    request = urllib.request.urlopen("https://collectionapi.metmuseum.org/public/collection/v1/objects")
+    response = request.read()
+    objectIDs = json.loads(response)["objectIDs"]
+    #chooses on object
+    chosenObject = objectIDs[(random.randrange(len(objectIDs)))]
+    #gets info on object
+    request = urllib.request.urlopen("https://collectionapi.metmuseum.org/public/collection/v1/objects/" + str(chosenObject))
+    response = request.read()
+    data = json.loads(response)
+    #objectName
+    #medium
+    #artistDisplayName
+    #objectDate
+    #primaryImage
+    #additionalImages
+    return render_template("metropolitan.html", name=data["objectName"], \
+        medium = data["medium"], artist = data["artistDisplayName"], \
+        data = data["objectDate"], main_img=data["primaryImage"], \
+        more_images=data["additionalImages"], )
 
 if __name__ == "__main__":
     app.debug = True

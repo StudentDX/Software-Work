@@ -3,5 +3,18 @@
         Metropolitan Museum of Art Collection 
     {% endblock Title %}
     {% block Body %}
-        {{info}}
+        <h1>
+            <i>
+                {{name}}
+            </i>
+            on {{medium}}
+        </h1>
+        <p>
+        By {{artist}}.
+        Created {{date}}
+        </p>
+        <img src={{main_img}}> <br>
+        {% for image in more_images %}
+            <img src={{image}}> <br>
+        {% endfor %}
     {% endblock Body %}
