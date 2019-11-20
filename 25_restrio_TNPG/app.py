@@ -69,7 +69,7 @@ def metropolitan():
     return render_template("metropolitan.html", name=data["objectName"], \
         medium = data["medium"], artist = data["artistDisplayName"], \
         data = data["objectDate"], main_img=data["primaryImage"], \
-        more_images=data["additionalImages"], )
+        more_images=data["additionalImages"], image_url = data["primaryImage"])
 
 if __name__ == "__main__":
     app.debug = True
