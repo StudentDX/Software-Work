@@ -20,10 +20,9 @@ var factButton = document.getElementById("fact");
 factButton.addEventListener('click', () => {
     var ans = fact (4);
     console.log(ans);
-    var newDiv = document.createElement("div");
+    var newDiv = document.getElementById("answer");
     console.log(newDiv);
-    newDiv.appendChild(document.createElement("div"));
-    factButton.appendChild(newDiv);
+    newDiv.appendChild(document.createTextNode("testing"));
     
     var html = newDiv.innerHTML;
     console.log(html);
