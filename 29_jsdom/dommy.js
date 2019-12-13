@@ -10,15 +10,16 @@ var removeItem = function(e) {
 };
 */
 
-var lis = document.getElementsByTagName("li");
+const lis = document.getElementsByTagName("li");
 
-for (var i = 0; i < lis.length; i++) {
-	var html = lis[i].innerHTML;
-	console.log(i);
-	console.log(lis[i]);
-	console.log(html);
-	lis[i].addEventListener("mouseover", () => {changeHeading (html)});
-	lis[i].addEventListener("mouseout", () => {changeHeading ("Hello World!")});
+for (let i = 0; i < lis.length; i++) {
+	let item = lis[i];
+	item.addEventListener("mouseover", () => {
+		changeHeading(item.innerHTML);
+		//console.log(i);
+	});
+	//console.log(lis[i]);
+	lis[i].addEventListener("mouseout", () => {changeHeading("Hello World")});
 	//lis[i].addEventListener("click", removeItem);
 };
 
