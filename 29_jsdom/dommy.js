@@ -33,5 +33,21 @@ var addItem = function(e) {
 
 var button = document.getElementById("b")
 button.addEventListener('click', addItem)
-/*
-*/
+
+var fib = function(n) {
+	if (n < 2) {
+		return 1;
+	}
+	else {
+		return fib(n-1)+fib(n-2);
+	}
+};
+
+var addFib = function (e) {
+	var list = document.getElementsByTagName("ol")[1];
+	var n = list[-1].innerHTML;
+	console.log(n)
+}
+
+var fb = document.getElementById("fb");
+fb.addEventListener("click", addFib);
