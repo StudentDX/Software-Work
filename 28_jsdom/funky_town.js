@@ -1,10 +1,10 @@
-//Elizabeth Doss, David Xiedeng
+//David Xiedeng
 //SoftDev1 pd1
 //K27 -- Sequential Progression
-//2019-12-10 
+//2019-12-13 
 
 var helloworld = function() {
-	return("hello world");
+	console.log("hello world");
 };
 
 var fact = function(n) {
@@ -15,6 +15,22 @@ var fact = function(n) {
 		return n = n * (fact(n - 1));
 	}
 };
+
+var factButton = document.getElementById("fact");
+factButton.addEventListener('click', () => {
+    var ans = fact (4);
+    console.log(ans);
+    var newDiv = document.createElement("div");
+    console.log(newDiv);
+    newDiv.appendChild(document.createElement("div"));
+    factButton.appendChild(newDiv);
+    
+    var html = newDiv.innerHTML;
+    console.log(html);
+    var Bhtml = factButton.innerHTML;
+    console.log(html);
+    
+    });
 
 //var test = fact(4);
 
