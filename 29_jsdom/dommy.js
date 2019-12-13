@@ -4,11 +4,11 @@ var changeHeading = function(e) {
 	console.log(e);
 };
 
-/*
-var removeItem = function(e) {
 
+var removeItem = function(e) {
+	e.remove();
 };
-*/
+
 
 const lis = document.getElementsByTagName("li");
 
@@ -19,8 +19,8 @@ for (let i = 0; i < lis.length; i++) {
 		//console.log(i);
 	});
 	//console.log(lis[i]);
-	lis[i].addEventListener("mouseout", () => {changeHeading("Hello World")});
-	//lis[i].addEventListener("click", removeItem);
+	item.addEventListener("mouseout", () => {changeHeading("Hello World")});
+	item.addEventListener("click", () => {removeItem (item)});
 };
 
 /*
