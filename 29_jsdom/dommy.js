@@ -23,14 +23,15 @@ for (let i = 0; i < lis.length; i++) {
 	item.addEventListener("click", () => {removeItem (item)});
 };
 
-/*
 var addItem = function(e) {
-	var list = ;
-	var item = document.createElement;
-	??? = "WORD";
-	???
-	list.???(item);
+	var list = document.getElementsByTagName("ol")[0];
+	var item = document.createElement("li");
+	item.innerHTML = "WORD";
+	//console.log(item);
+	list.appendChild(item);
 };
 
 var button = document.getElementById("b")
+button.addEventListener('click', addItem)
+/*
 */
