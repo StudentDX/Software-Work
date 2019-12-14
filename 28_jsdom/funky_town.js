@@ -16,16 +16,6 @@ var fact = function(n) {
 	}
 };
 
-var factButton = document.getElementById("fact");
-factButton.addEventListener('click', () => {
-    var ans = fact (4);
-    console.log(ans);
-    let ansDiv = document.getElementById("answer");
-    ansDiv.innerHTML = (ans);
-    });
-
-//var test = fact(4);
-
 var fibonacci = function(n,a=0,b=1) {
 	while (n > 1){
 		c = a;
@@ -52,3 +42,31 @@ var randomStudent = function(){
 	i = Math.floor(Math.random() * students.length)
 	return students[i];
 }
+
+var input = [4,2];
+
+var changeAnswer = (ans) => {
+    ansDiv = document.getElementById("answer");
+    ansDiv.innerHTML = (ans);
+}
+
+var factButton = document.getElementById("fact");
+factButton.addEventListener('click', () => {
+    ans = fact (input[0]);
+    console.log(ans);
+    changeAnswer(ans);
+    });
+
+var fibButton = document.getElementById("fib");
+fibButton.addEventListener('click', () => 
+    {
+        ans = fibonacci (input[0]);
+        console.log(ans);
+        changeAnswer(ans);
+    }
+);
+
+/*
+var GCDButton = document.getElementById("gcd");
+GCDButton.addEventListener('click', () =>
+*/
