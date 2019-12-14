@@ -1,12 +1,17 @@
 var changeHeading = function(e) {
 	var h = document.getElementById("h");
 	h.innerHTML = e;
-	console.log(e);
+	//console.log(e);
 };
 
 
 var removeItem = function(e) {
-	e.remove();
+	//console.log(e.getAttribute == "fib");
+    if (e.getAttribute("type") == "fib") {
+        fibs--;
+        //console.log(fibs);
+    };
+    e.remove();
 };
 
 
@@ -28,8 +33,8 @@ for (let i = 0; i < lis.length; i++) {
 
 
 var addItem = function(e) {
-	var list = document.getElementsByTagName("ol")[0];
-	var item = document.createElement("li");
+	list = document.getElementsByTagName("ol")[0];
+	item = document.createElement("li");
 	item.innerHTML = "WORD";
 	makeDeletable(item);
 	list.appendChild(item);
@@ -47,10 +52,19 @@ var fib = function(n) {
 	}
 };
 
+var fibs = 0;
+
 var addFib = function (e) {
-	var list = document.getElementsByTagName("ol")[1];
-	var n = list[-1].innerHTML;
-	console.log(n)
+	list = document.getElementsByTagName("ol")[1];
+	currentFib = fib (fibs);
+    fibs++;
+    
+	//console.log(currentFib);
+    item = document.createElement("li");
+	item.setAttribute("type", "fib");
+    item.innerHTML = currentFib;
+	makeDeletable(item);
+	list.appendChild(item);
 }
 
 var fb = document.getElementById("fb");
