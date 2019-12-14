@@ -20,15 +20,8 @@ var factButton = document.getElementById("fact");
 factButton.addEventListener('click', () => {
     var ans = fact (4);
     console.log(ans);
-    var newDiv = document.getElementById("answer");
-    console.log(newDiv);
-    newDiv.appendChild(document.createTextNode("testing"));
-    
-    var html = newDiv.innerHTML;
-    console.log(html);
-    var Bhtml = factButton.innerHTML;
-    console.log(html);
-    
+    let ansDiv = document.getElementById("answer");
+    ansDiv.innerHTML = (ans);
     });
 
 //var test = fact(4);
