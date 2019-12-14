@@ -8,15 +8,17 @@ var changeHeading = function(e) {
 var removeItem = function(e) {
 	//console.log(e.getAttribute == "fib");
     if (e.getAttribute("type") == "fib") {
-        fibs--;
-        //console.log(fibs);
-    };
-    e.remove();
+        deFib = fiblis.pop()
+        console.log(deFib);
+        deFib.remove();
+    }
+    else {
+        e.remove();
+    }
 };
 
 
 const lis = document.getElementsByTagName("li");
-
 
 var makeDeletable = (item) => {
     item.addEventListener("mouseover", () => {
@@ -52,19 +54,19 @@ var fib = function(n) {
 	}
 };
 
-var fibs = 0;
+var fiblis = [];
 
 var addFib = function (e) {
 	list = document.getElementsByTagName("ol")[1];
-	currentFib = fib (fibs);
-    fibs++;
-    
+	currentFib = fib (fiblis.length);
 	//console.log(currentFib);
     item = document.createElement("li");
 	item.setAttribute("type", "fib");
     item.innerHTML = currentFib;
 	makeDeletable(item);
 	list.appendChild(item);
+    fiblis.push(item);
+    //console.log(fiblis);
 }
 
 var fb = document.getElementById("fb");
