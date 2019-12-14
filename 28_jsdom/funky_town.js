@@ -48,12 +48,12 @@ var input = [4,2];
 var changeAnswer = (ans) => {
     ansDiv = document.getElementById("answer");
     ansDiv.innerHTML = (ans);
+    console.log(ans);
 }
 
 var factButton = document.getElementById("fact");
 factButton.addEventListener('click', () => {
     ans = fact (input[0]);
-    console.log(ans);
     changeAnswer(ans);
     });
 
@@ -61,12 +61,14 @@ var fibButton = document.getElementById("fib");
 fibButton.addEventListener('click', () => 
     {
         ans = fibonacci (input[0]);
-        console.log(ans);
         changeAnswer(ans);
     }
 );
 
-/*
 var GCDButton = document.getElementById("gcd");
-GCDButton.addEventListener('click', () =>
-*/
+GCDButton.addEventListener('click', () => 
+    {
+        ans = gcd (input[0], input[1]);
+        changeAnswer(ans);
+    }
+);
