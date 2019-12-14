@@ -43,7 +43,14 @@ var randomStudent = function(){
 	return students[i];
 }
 
-var input = [4,2];
+var input;
+
+var inputUpdater = document.getElementsByName("number")[0];
+inputUpdater.addEventListener("mouseout", () => 
+    {
+        input = (inputUpdater.getAttribute("name"))
+    }
+);
 
 var changeAnswer = (ans) => {
     ansDiv = document.getElementById("answer");
@@ -75,9 +82,7 @@ GCDButton.addEventListener('click', () =>
             ans = gcd (input[0], input[1]);
             changeAnswer(ans);
         }
-        catch {
-            
-        }
+        catch {}
     }
 );
 
