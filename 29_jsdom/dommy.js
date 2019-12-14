@@ -12,22 +12,26 @@ var removeItem = function(e) {
 
 const lis = document.getElementsByTagName("li");
 
-for (let i = 0; i < lis.length; i++) {
-	let item = lis[i];
-	item.addEventListener("mouseover", () => {
+
+var makeDeletable = (item) => {
+    item.addEventListener("mouseover", () => {
 		changeHeading(item.innerHTML);
-		//console.log(i);
 	});
-	//console.log(lis[i]);
 	item.addEventListener("mouseout", () => {changeHeading("Hello World")});
 	item.addEventListener("click", () => {removeItem (item)});
+}
+
+for (let i = 0; i < lis.length; i++) {
+	let item = lis[i];
+	makeDeletable(item);
 };
+
 
 var addItem = function(e) {
 	var list = document.getElementsByTagName("ol")[0];
 	var item = document.createElement("li");
 	item.innerHTML = "WORD";
-	//console.log(item);
+	makeDeletable(item);
 	list.appendChild(item);
 };
 
