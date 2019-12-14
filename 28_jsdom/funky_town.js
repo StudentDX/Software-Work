@@ -53,14 +53,17 @@ var changeAnswer = (ans) => {
 
 var factButton = document.getElementById("fact");
 factButton.addEventListener('click', () => {
-    ans = fact (input[0]);
-    changeAnswer(ans);
+        try {
+            ans = fact (input);
+            changeAnswer(ans);
+        }
+        catch {}
     });
 
 var fibButton = document.getElementById("fib");
 fibButton.addEventListener('click', () => 
     {
-        ans = fibonacci (input[0]);
+        ans = fibonacci (input);
         changeAnswer(ans);
     }
 );
@@ -68,7 +71,20 @@ fibButton.addEventListener('click', () =>
 var GCDButton = document.getElementById("gcd");
 GCDButton.addEventListener('click', () => 
     {
-        ans = gcd (input[0], input[1]);
-        changeAnswer(ans);
+        try{
+            ans = gcd (input[0], input[1]);
+            changeAnswer(ans);
+        }
+        catch {
+            
+        }
     }
+);
+
+var randButton = document.getElementById("rand");
+randButton.addEventListener('click', () => 
+    {
+        ans = randomStudent();
+        changeAnswer(ans);
+    } 
 );
