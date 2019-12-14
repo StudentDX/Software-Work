@@ -14,6 +14,7 @@ var removeItem = function(e) {
     }
     else {
         e.remove();
+        items--;
     }
 };
 
@@ -31,13 +32,16 @@ var makeDeletable = (item) => {
 for (let i = 0; i < lis.length; i++) {
 	let item = lis[i];
 	makeDeletable(item);
+    items++;
 };
 
+var items = 8;
 
 var addItem = function(e) {
 	list = document.getElementsByTagName("ol")[0];
 	item = document.createElement("li");
-	item.innerHTML = "WORD";
+	item.innerHTML = "item " + items;
+    items++;
 	makeDeletable(item);
 	list.appendChild(item);
 };
