@@ -49,22 +49,25 @@ var addItem = function(e) {
 var button = document.getElementById("b")
 button.addEventListener('click', addItem)
 
+var fiblis = [];
+
 var fib = function(n) {
 	if (n < 2) {
 		return 1;
 	}
 	else {
-		return fib(n-1)+fib(n-2);
+		let n1 = parseInt(fiblis[n-1].innerHTML);
+		let n2 = parseInt(fiblis[n-2].innerHTML);
+		return n1 + n2;
 	}
 };
 
-var fiblis = [];
 
 var addFib = function (e) {
-	list = document.getElementsByTagName("ol")[1];
-	currentFib = fib (fiblis.length);
+	let list = document.getElementsByTagName("ol")[1];
+	let currentFib = fib (fiblis.length);
 	//console.log(currentFib);
-    item = document.createElement("li");
+    let item = document.createElement("li");
 	item.setAttribute("type", "fib");
     item.innerHTML = currentFib;
 	makeDeletable(item);
