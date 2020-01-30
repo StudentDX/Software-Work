@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Form Page</title>
+  </head>
+  <body>
+			<b>
+      {% for line in heading %}
+			{{line}}<br>
+			{% endfor %}
+      </b>
+    <form action = "/auth">
+      Type stuff: <input type="text" name = "username">
+      <input type="submit" name = "sub1">
+    </form>
+  </body>
+</html>
