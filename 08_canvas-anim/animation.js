@@ -45,8 +45,8 @@ var move = function(e) {
     //ctx.arc(valueX,valueY,5, 0, Math.PI * 2, true);
     ctx.fill();
     ctx.closePath();
-    if (valueX >= 575 || valueX <= 25) changeX *= -1;
-    if (valueY >= 575 || valueY <= 25) changeY *= -1;
+    if (valueX >= 550 || valueX <= 0) changeX *= -1;
+    if (valueY >= 550 || valueY <= 0) changeY *= -1;
     valueX += changeX;
     valueY += changeY;
     console.log(valueX, changeX, valueY, changeY)
