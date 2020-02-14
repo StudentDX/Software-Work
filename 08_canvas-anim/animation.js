@@ -67,8 +67,8 @@ var bounce = function(e) {
 
     changeX = 1;
     changeY = 1;
-    valueX = Math.floor(Math.random() * 550) + 25;
-    valueY = Math.floor(Math.random() * 550) + 25;
+    valueX = Math.floor(Math.random() * 550);
+    valueY = Math.floor(Math.random() * 550);
     move();
 }
 
