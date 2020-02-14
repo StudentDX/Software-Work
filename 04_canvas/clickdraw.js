@@ -10,16 +10,16 @@ var ctx = c.getContext("2d");
 c.addEventListener("click", () => makeRect());
 
 var makeRect = function(e){
-    var mouseX = e.offsetX;
-    var mouseY = e.offsetY;
+    var mouseX = event.offsetX;
+    var mouseY = event.offsetY;
     console.log(mouseX,mouseY)
-        ctx.fillStyle="#ff0000";
-    ctx.fillRect(x,y,100,200);
+    ctx.fillStyle="#ff0000";
+    ctx.fillRect(mouseX,mouseY,100,200);
 }
 
 var clearButton = document.getElementById("clear");
 clearButton.addEventListener("click", () => clearCanvas());
 
 var clearCanvas = () => {
-    ctx.clearRect(0,0,600,1000)
+    ctx.clearRect(0,0,c.clientWidth,c.clientHeight)
 }
