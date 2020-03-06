@@ -24,9 +24,13 @@ collection = db.addresses
 def convertJSONtoMongoDB(filename):
     f = open(filename, "r")
     data = json.load(f)
-    info = "[" + str(data[1]) + "]"
-    print (info, type(info))
+
+    info = json.dumps(data[1], indent = 2)
+    print (type(data), type(info))
+    #print(json.dumps(info, indent = 2))
+
     bsoninfo = loads(info)
+    print (bsoninfo)
     #collection.insert_one(info)
 
 convertJSONtoMongoDB("primer-dataset.json")
