@@ -5,6 +5,7 @@
 
 from pymongo import MongoClient
 import json
+from bson.json_util import loads
 
 #creating MongoClient
 #uses default perameters of local host
@@ -23,6 +24,9 @@ collection = db.addresses
 def convertJSONtoMongoDB(filename):
     f = open(filename, "r")
     data = json.load(f)
-    print (data[1])
+    info = "[" + str(data[1]) + "]"
+    print (info, type(info))
+    bsoninfo = loads(info)
+    #collection.insert_one(info)
 
-#convertJSONtoMongoDB("primer-dataset.json")
+convertJSONtoMongoDB("primer-dataset.json")
