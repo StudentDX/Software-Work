@@ -7,30 +7,46 @@ from pymongo import MongoClient
 import json
 from bson.json_util import loads
 
+'''
 #creating MongoClient
 #uses default perameters of local host
 client = MongoClient()
-
 #creates Mongo database
 #does not create or save at the start
 #saves when first document is inserted
-db = client.newBInfo
+#db = client.newBInfo
 
 #creates Mongo collection
 #does not create or save at the start
 #saves when first document is inserted
-collection = db.addresses
-
+#collection = db.addresses
+'''
 def convertJSONtoMongoDB(filename):
+    #opens connection
+    client = MongoClient()
+    db = client.newBInfo
+    collection = db.addresses
+
+    #clears collection
+    collection.delete_many({})
+
     f = open(filename, "r")
     data = json.load(f)
+    for entry in data:
+        addEntryinAddresses(entry,collection)
 
+
+
+
+#accepts a part of
+def addEntryinAddresses(entry, collection):
+    #converts json entry into proper json format
     info = json.dumps(data[1], indent = 2)
-    print (type(data), type(info))
-    #print(json.dumps(info, indent = 2))
+    #print (type(data), type(info))
 
+    #converts into usable bson format
     bsoninfo = loads(info)
-    print (bsoninfo)
-    #collection.insert_one(info)
+    #print (bsoninfo)
+    collection.insert_one(bsoninfo)
 
 convertJSONtoMongoDB("primer-dataset.json")
