@@ -32,14 +32,18 @@ def convertJSONtoMongoDB(filename):
 
     f = open(filename, "r")
     data = json.load(f)
+    numberofdocs = 0
     for entry in data:
         addEntryinAddresses(entry,collection)
+        numberofdocs += 1
+        print (numberofdocs)
     '''
     x = 0
     while x < 10:
         addEntryinAddresses(data[x],collection)
         x+=1
     '''
+    print ("All data added!")
 
 
 
@@ -48,11 +52,11 @@ def convertJSONtoMongoDB(filename):
 def addEntryinAddresses(entry, collection):
     #converts json entry into proper json format
     info = json.dumps(entry, indent = 2)
-    #print (type(data), type(info))
-
+    #print (info)
     #converts into usable bson format
     bsoninfo = loads(info)
     #print (bsoninfo)
     collection.insert_one(bsoninfo)
+
 
 convertJSONtoMongoDB("primer-dataset.json")
