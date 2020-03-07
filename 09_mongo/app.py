@@ -1,3 +1,4 @@
+
 #David Xiedeng
 #SoftDev1 pd 1
 #K09 -- Yummy Mongo Py
@@ -14,12 +15,12 @@ client = MongoClient()
 #creates Mongo database
 #does not create or save at the start
 #saves when first document is inserted
-#db = client.newBInfo
+db = client.newBInfo
 
 #creates Mongo collection
 #does not create or save at the start
 #saves when first document is inserted
-#collection = db.addresses
+collection = db.addresses
 '''
 def convertJSONtoMongoDB(filename):
     #opens connection
@@ -36,19 +37,10 @@ def convertJSONtoMongoDB(filename):
     for entry in data:
         addEntryinAddresses(entry,collection)
         numberofdocs += 1
-        print (numberofdocs)
-    '''
-    x = 0
-    while x < 10:
-        addEntryinAddresses(data[x],collection)
-        x+=1
-    '''
+        #print (numberofdocs)
     print ("All data added!")
 
-
-
-
-#accepts a part of
+#accepts a part of a json object
 def addEntryinAddresses(entry, collection):
     #converts json entry into proper json format
     info = json.dumps(entry, indent = 2)
@@ -58,5 +50,47 @@ def addEntryinAddresses(entry, collection):
     #print (bsoninfo)
     collection.insert_one(bsoninfo)
 
+# takes string by borough
+def searchByBorough(borough):
+    search = searchDB({"borough": borough})
+    displayQuery(search, 10)
 
-convertJSONtoMongoDB("primer-dataset.json")
+def searchByZIP(zipcode):
+    search = searchDB({"address.zipcode": zipcode})
+    #print (search)
+    displayQuery(search, 10)
+
+def searchByZIPandGrade(zipcode, grade):
+    search = searchDB({"$and:" [
+        {"address.zipcode": zipcode},
+        {"grades.grade":
+            {"$in:"
+                [
+                grade
+                ]
+            }
+        }
+    ]})
+    displayQuery(search, 10)
+
+
+#takes in tuple
+def searchDB(input):
+    collection = MongoClient().newBInfo.addresses
+    return (collection.find(input))
+
+#takes in Mongo cursor
+def displayQuery(cursor, displayLength):
+    x = 0
+    for document in cursor:
+        print (document)
+        x += 1
+        if (x == displayLength):
+            break
+
+#==================================================
+
+#convertJSONtoMongoDB("primer-dataset.json")
+#searchByBorough("Brooklyn")
+#searchByZIP(11214)
+searchByZIP("11214")
