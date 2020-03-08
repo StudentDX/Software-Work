@@ -61,20 +61,33 @@ def searchByZIP(zipcode):
     displayQuery(search, 10)
 
 def searchByZIPandGrade(zipcode, grade):
-    search = searchDB({"$and:" [
+    search = searchDB({"$and":[
         {"address.zipcode": zipcode},
         {"grades.grade":
-            {"$in:"
-                [
-                grade
-                ]
+            {"$in":
+                [grade]
             }
         }
-    ]})
+        ]})
+    displayQuery(search, 10)
+
+def searchByZIPwithScoreLT(zipcode, score):
+    search = searchDB(
+        {"$and":
+            [
+                {"address.zipcode": zipcode
+                },
+                {"grades.score":
+                    {"$lt": score
+                    }
+                }
+            ]
+        }
+    )
     displayQuery(search, 10)
 
 
-#takes in tuple
+#takes in tuple of order
 def searchDB(input):
     collection = MongoClient().newBInfo.addresses
     return (collection.find(input))
@@ -93,4 +106,6 @@ def displayQuery(cursor, displayLength):
 #convertJSONtoMongoDB("primer-dataset.json")
 #searchByBorough("Brooklyn")
 #searchByZIP(11214)
-searchByZIP("11214")
+#searchByZIP("11214")
+#searchByZIPandGrade("10282", "A")
+searchByZIPwithScoreLT("11214", "1000")
