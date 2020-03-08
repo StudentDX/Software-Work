@@ -84,7 +84,9 @@ def searchByZIPwithScoreLT(zipcode, score):
             ]
         }
     )
-    displayQuery(search, 10)
+    print (search)
+    print (search.count())
+    displayQuery(search,1)
 
 
 #takes in tuple of order
@@ -98,7 +100,7 @@ def displayQuery(cursor, displayLength):
     for document in cursor:
         print (document)
         x += 1
-        if (x == displayLength):
+        if (x >= displayLength):
             break
 
 #==================================================
@@ -108,4 +110,4 @@ def displayQuery(cursor, displayLength):
 #searchByZIP(11214)
 #searchByZIP("11214")
 #searchByZIPandGrade("10282", "A")
-searchByZIPwithScoreLT("11214", "1000")
+searchByZIPwithScoreLT("11214", 1000)
