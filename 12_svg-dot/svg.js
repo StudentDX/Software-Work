@@ -1,3 +1,11 @@
+// clearing
+var clear = document.getElementById("clear")
+clear.addEventListener('click', e => {
+	pic.innerHTML = null;
+  prevX = null;
+  prevY = null;
+})
+
 var pic = document.getElementById("vimage");
 
 var prevX;
