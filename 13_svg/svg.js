@@ -38,7 +38,6 @@ function moveCircle(circle){
 		console.log("move turn");
 		}
 
-
 //takes element circle
 // circle change color
 function changeColor(circle){
@@ -54,7 +53,10 @@ function changeColor(circle){
 pic.addEventListener('click', e => {
   var x = e.offsetX;
   var y = e.offsetY;
-  circle = drawCircle(x,y);
+	// checks to only draw when clicking blank space
+	if (e.target == pic) {
+		circle = drawCircle(x,y);
+	}
 	console.log("pic turn");
 
   });
