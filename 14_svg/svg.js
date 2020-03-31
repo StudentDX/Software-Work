@@ -82,27 +82,25 @@ var currentFrame;
 // animating start
 moveButton.addEventListener("click", function(e) {
   isMoving = !isMoving;
-  // stops animation and prevents
-  // animation speed doubling
+  // prevents animation speed doubling
   window.cancelAnimationFrame(currentFrame);
-  if(isMoving) {
-    animate();
-  }
+  animate();
 });
 
 xtraButton.addEventListener('click', function(e) {
   isXtra = !isXtra;
-  //console.log("isXtra", isXtra);
   window.cancelAnimationFrame(currentFrame);
-  if(isXtra) {
-    animate();
-  }
+  animate();
 });
 
 var rgb = [0,0,0];
 
 // animating function; retrieved from Pratham
 let animate = () => {
+  if(!(isMoving || isXtra)) {
+    cancelAnimationFrame(currentFrame);
+    return "animation stopped"
+  }
   for(i = 0; i < children.length; i++) {
     // moves circle based on coord deltas in array child
     // speed multiplier changed to 1
