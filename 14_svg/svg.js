@@ -6,8 +6,10 @@
 var pic = document.getElementById("vimage"); //svg
 var clear = document.getElementById("clear"); //clearbutton
 let moveButton = document.getElementById("moveButton");
+let xtraButton = document.getElementById("xtraButton");
 let children = []; // list of circles
 let isMoving = false;
+let isXtra = false;
 
 // clearing
 clear.addEventListener('click', e => {
@@ -88,19 +90,52 @@ moveButton.addEventListener("click", function(e) {
   }
 });
 
+xtraButton.addEventListener('click', function(e) {
+  isXtra = !isXtra;
+  //console.log("isXtra", isXtra);
+  window.cancelAnimationFrame(currentFrame);
+  if(isXtra) {
+    animate();
+  }
+});
+
+var rgb = [0,0,0];
+
 // animating function; retrieved from Pratham
 let animate = () => {
   for(i = 0; i < children.length; i++) {
     // moves circle based on coord deltas in array child
     // speed multiplier changed to 1
-    children[i][0].setAttribute("cx", parseInt(children[i][0].getAttribute("cx"), 10) + (1 * children[i][1]))
-    children[i][0].setAttribute("cy", parseInt(children[i][0].getAttribute("cy"), 10) + (1 * children[i][2]))
-    // reverses delta when border reached
-    if(children[i][0].getAttribute("cx") > 500 || children[i][0].getAttribute("cx") < 0) {
-      children[i][1] = -children[i][1];
+    if(isMoving) {
+      children[i][0].setAttribute("cx", parseInt(children[i][0].getAttribute("cx"), 10) + (1 * children[i][1]))
+      children[i][0].setAttribute("cy", parseInt(children[i][0].getAttribute("cy"), 10) + (1 * children[i][2]))
+      // reverses delta when border reached
+      if(children[i][0].getAttribute("cx") > 500 || children[i][0].getAttribute("cx") < 0) {
+        children[i][1] = -children[i][1];
+      }
+      if(children[i][0].getAttribute("cy") > 500 || children[i][0].getAttribute("cy") < 0) {
+        children[i][2] = -children[i][2];
+      }
     }
-    if(children[i][0].getAttribute("cy") > 500 || children[i][0].getAttribute("cy") < 0) {
-      children[i][2] = -children[i][2];
+    if (isXtra){
+      let test = 1;
+      // changes color of circles circles through hexcode
+      children[i][0].setAttribute("fill", `rgb(${rgb[0]},${rgb[1]},${rgb[2]})`);
+      children[i][0].setAttribute("stroke", `rgb(${rgb[0]},${rgb[1]},${rgb[2]})`);
+      //console.log(children[i][0].fill)
+      // increases rbg values
+      if (rgb[0] < 255) {
+        rgb[0] += 1;
+      }
+      else if (rgb[1] < 255) {
+        rgb[1] += 1;
+      }
+      else if (rgb[2] < 255) {
+        rgb[2] += 1;
+      }
+      else {
+        rgb = [0,0,0];
+      }
     }
   }
   currentFrame = window.requestAnimationFrame(animate);
