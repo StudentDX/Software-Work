@@ -15,14 +15,12 @@ var clicky = function(e) {
 
 
 //Q: Does the order in which the event listeners are attached matter?
+for (x=0; x < trs.length; x++) {
+  trs[x].addEventListener('click', clicky, true);
+}
 
 for (var x=0; x < tds.length; x++) {
   tds[x].addEventListener('click', clicky, true);
 }
 
-for (x=0; x < trs.length; x++) {
-  trs[x].addEventListener('click', clicky, true);
-}
-
 table.addEventListener('click', clicky, true);
-

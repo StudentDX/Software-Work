@@ -1,0 +1,58 @@
+1.)
+Adds listener to all elements inside the table
+Prediction: When those elements are clicked they will produce an alert -
+  - with its innerHTML displayed
+Outcome: correct
+
+2.)
+Listener added to all table-internal elements, table row elements, and tables
+order of nesting is
+ tables
+ |--table row
+    |--table d
+Prediction: Alert will display:
+  - internal of td, then tr, then table
+Outcome: Mostly correct
+ - table is also clickable and will only produce a dialogue of itself when clicked
+ - table row cannot be clicked
+ - table d is as prediction
+
+3.)
+Before uncommenting e.stopPropagation();
+Listener added to all table-internal elements, table row elements, and first row of table
+tables
+|--table row
+   |--table d
+Prediction: Alert will display:
+  When top row is clicked:
+    - internal of td, then tr, then table
+  When bottom row is clicked:
+    - internal of td, then tr
+  Should reflect outcome of trial 2
+Outcome: Incorrect
+- both rows display similar behavior
+- table, then td, then tr
+
+After uncommenting e.stopPropagation();
+Prediction: Only one alert will show up: table.
+Outcome: Correct
+* note: table has extra tag tbody, when generated in the dom.
+
+4.)
+Prediction: Uncommenting e.stopPropagation() will show only the first event alert
+Outcome: Correct
+Order of listeners are are added as normal.
+Prediction: Order off addition does not matter
+Outcome: incorrect?
+- displays in order of last added, which is equal to hierarchy of dom.
+
+Testing rearranging adding.
+- Add table put first.
+Prediction: Order of addition will not matter, only dom hierarchy.
+Outcome: correct?
+- follows dom hierarchy
+
+Testing rearranging adding.
+- Add table row put first.
+Prediction: Order of addition will not matter, only dom hierarchy.
+Outcome: correct.
