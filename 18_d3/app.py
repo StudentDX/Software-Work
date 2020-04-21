@@ -5,7 +5,7 @@ K18 -- Come Up For Air
 2020-04-19
 '''
 
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template
 import json
 
 app = Flask(__name__)
@@ -17,8 +17,11 @@ def readJSON(filename):
 
 @app.route("/")
 def start():
-    print (type(readJSON("meteorites.json")))
-    return redirect("/static/index.html")
+    data = readJSON("static/meteorites.json")
+    #print (data)
+    return render_template(
+        "index.html",
+        info = data)
 
 if __name__ == "__main__":
     app.debug = True
