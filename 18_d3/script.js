@@ -7,4 +7,5 @@ K18 -- Come Up For Air
 
 //to open file
 // in this case a json
-attachment = FileAttachment("meteorites.json")
+data = d3.json("./meteorites.json", callback); 
+);

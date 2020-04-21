@@ -17,6 +17,16 @@
     <script src="http://d3js.org/d3.v5.min.js"
     	charset="utf-8">
     </script>
-    <!-- <script src="script.js"></script> -->
+    <script>
+      d3.json("./meteorites.json", function(data) {
+        console.log(data);
+      });
+    </script>
+    <!--
+      Chosen Dataset URL
+      https://data.nasa.gov/resource/y77d-th95.json
+    <script src="script.js"></script>
+    -->
+
   </body>
 </html>
