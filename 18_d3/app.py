@@ -21,7 +21,7 @@ def start():
     #print (data)
     return render_template(
         "index.html",
-        info = data)
+        info = json.dumps(data))
 
 if __name__ == "__main__":
     app.debug = True
