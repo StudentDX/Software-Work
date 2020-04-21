@@ -16,10 +16,19 @@ fromFlask.remove();
 //lowest year in selection is 1880
 var currentYear = 1880;
 
-function filterByYear(yearstring) {
+// selecting meteorites by year
+// throws undefined error at the end but array is still built
+function filterByYear(year) {
   filteredData = [];
-  for (i = 0; i < data.length; i += 1) {
-    filteredData.push(data[i]);
+  for (let part in data) {
+    // console.log(data[entry].year)
+    let temp = data[part]
+    // console.log(temp.substring(0,4))
+    // console.log(temp, temp == 1990)
+    if (year == parseInt(temp.year.substring(0,4))) {
+      filteredData.push(temp);
+    }
+    //console.log(filteredData.length, filteredData)
   }
   return filteredData;
 }
