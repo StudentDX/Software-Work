@@ -5,14 +5,42 @@ K18 -- Come Up For Air
 2020-04-19
 */
 
-//passing info from Flask to js
-//indirectly uses a meta tag
+// passing info from Flask to js
+// indirectly uses a meta tag
 // inefficent, but no time to change
 var fromFlask = document.getElementById('server-info');
 // java info
 var data = fromFlask.dataset.server;
 data = JSON.parse(data);
 fromFlask.remove();
+
+function createBarChart(){
+  let barData = createBarData(graphBottomYear, graphTopYear);
+  //finds slot for bar and empties it
+  let barSlot = d3.select('#chart')
+    .text("")
+    .style("font", "10px sans-serif")
+    .style("text-align", "right")
+    .style("color", "white");
+
+  // loop through barData to create bars
+  for (let i = 0; i < barData.length; i += 1){
+    barSlot.append(createBar(barData[i].length));
+  }
+}
+
+function createBar(length){
+  // code from observable hq
+  const bar = d3.create("div")
+      .data(10)
+      .join("div")
+      .style("background", "steelblue")
+      .style("padding", "3px")
+      .style("margin", "1px")
+      .style("width", d => `${d * 10}px`)
+      .text(d => d);
+  return bar.node();
+}
 
 // lowest year available in selection is 1880
 // var currentYear = 1880;
