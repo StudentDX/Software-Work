@@ -15,6 +15,8 @@ def readJSON(filename):
         data = json.load(file)
         return data
 
+# got new idea from E Lau and E Lam
+# use a route instead to call for the info instead of template
 @app.route("/")
 def start():
     data = readJSON("static/meteorites.json")

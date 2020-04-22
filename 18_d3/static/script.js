@@ -7,28 +7,39 @@ K18 -- Come Up For Air
 
 //passing info from Flask to js
 //indirectly uses a meta tag
+// inefficent, but no time to change
 var fromFlask = document.getElementById('server-info');
 // java info
 var data = fromFlask.dataset.server;
 data = JSON.parse(data);
 fromFlask.remove();
 
-//lowest year in selection is 1880
-var currentYear = 1880;
+// lowest year available in selection is 1880
+// var currentYear = 1880;
+var graphBottomYear = 1880;
+var graphTopYear = 1885;
 
-// selecting meteorites by year
-// throws undefined error at the end but array is still built
-function filterByYear(year) {
-  filteredData = [];
-  for (let part in data) {
-    // console.log(data[entry].year)
-    let temp = data[part]
-    // console.log(temp.substring(0,4))
-    // console.log(temp, temp == 1990)
-    if (year == parseInt(temp.year.substring(0,4))) {
-      filteredData.push(temp);
-    }
-    //console.log(filteredData.length, filteredData)
+function createBarData(min, max) {
+  // stores number instances in years [min, max]
+  // eg 1880 - 1885 > 1880, 81, 82, 83, 84, 85
+  // and number of crashes per year
+  let filteredDataRange = [];
+  for (yearIndex = min; yearIndex <= max; yearIndex += 1) {
+    filteredDataRange.push(new Array());
   }
-  return filteredData;
+  //data is info from json
+  for (let part in data) {
+    let yearOf = data[part].year;
+    //must be done separately otherwise data[part].year will be undefined
+    yearOf = parseInt(yearOf);
+    if (yearOf >= min && yearOf <= max) {
+      for (tester = min; tester <= max; tester += 1){
+        // adds crash entry to year slot in array
+        if (tester == yearOf) {
+          filteredDataRange[tester - min].push(data[part]);
+        }
+      }
+    }
+  }
+  return filteredDataRange
 }
